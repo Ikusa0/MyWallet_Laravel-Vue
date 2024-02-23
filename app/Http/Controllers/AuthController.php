@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return response()->json(['redirect' => route('home.web.get')]);
+            return response()->json(['redirect' => route('wallet.web.get')]);
         }
         return response()->json(['error' => 'Failed to Login'], 422);
     }
@@ -57,7 +58,8 @@ class AuthController extends Controller
         return response()->json(['redirect' => route('login.web.get')]);
     }
 
-    public function logoutAPI() {
+    public function logoutAPI()
+    {
         Session::flush();
         Auth::logout();
         return response()->json(['redirect' => route('login.web.get')]);
