@@ -6,8 +6,14 @@
             :type="input.type || 'text'"
             :placeholder="input.placeholder"
             :required="input.required"
-            :disabled="disabled"
-            @input="updateFormValue(input.name, $event.target.value)"
+            :disabled="disabled || input.disabled"
+            @input="
+                updateFormValue(
+                    input.name,
+                    $event.target,
+                    input.inputMask
+                )
+            "
         />
         <button :disabled="disabled">{{ data.button.text }}</button>
     </form>
@@ -20,8 +26,13 @@ const { data } = defineProps(["data"]);
 const formValues = {};
 let disabled = ref(false);
 
-const updateFormValue = (name, value) => {
-  formValues[name] = value;
+const updateFormValue = (name, target, inputMask) => {
+    let value = target.value;
+    if (inputMask) {
+        value = inputMask(value);
+    }
+    target.value = value;
+    formValues[name] = value;
 };
 
 const onSubmit = async () => {
