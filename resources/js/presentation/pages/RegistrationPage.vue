@@ -2,7 +2,7 @@
     <div class="page">
         <Logo />
         <Form :data="formData" />
-        <a href="#">Já tem uma conta? Entre agora!</a>
+        <a href="login">Já tem uma conta? Entre agora!</a>
     </div>
 </template>
 

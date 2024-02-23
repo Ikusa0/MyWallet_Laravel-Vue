@@ -2,7 +2,7 @@
     <div class="page">
         <Logo />
         <Form :data="formData" />
-        <a href="#">Primeira vez? Cadastre-se!</a>
+        <a href="register">Primeira vez? Cadastre-se!</a>
     </div>
 </template>
 
