@@ -8,3 +8,11 @@
     --red: rgba(199, 0, 0, 1);
     --green: rgba(3, 172, 0, 1);
 }
+
+.negative {
+    color: var(--red);
+}
+
+.positive {
+    color: var(--green);
+}
