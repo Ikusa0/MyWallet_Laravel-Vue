@@ -13,7 +13,16 @@ import Form from "../components/Form.vue";
 const formData = {
     form: {
         onSubmit: async (formValues) => {
-            console.log(formValues);
+            try {
+                const response = await axios.post("/register", formValues);
+                if (response.data.redirect) {
+                    window.location.href = response.data.redirect;
+                } else {
+                    console.error(response.data.error);
+                }
+            } catch (error) {
+                console.error("An error occurred:", error);
+            }
         },
     },
     inputs: [
